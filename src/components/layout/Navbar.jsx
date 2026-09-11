@@ -15,7 +15,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="bg-white dark:bg-secondary-900 shadow-sm transition-colors duration-300">
+    <nav className="surface shadow-sm">
       <div className="container">
         <div className="flex justify-between h-16">
           <div className="flex">

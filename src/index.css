@@ -40,7 +40,33 @@
     @apply block w-full rounded-md border-secondary-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm dark:bg-secondary-800 dark:border-secondary-600 dark:text-secondary-100 dark:placeholder-secondary-400;
   }
 
+  /* Semantic surface/text tokens: define the light/dark pairing once,
+     reuse everywhere instead of repeating "dark:*" on every element. */
+  .page-shell {
+    @apply min-h-screen bg-secondary-50 dark:bg-secondary-900;
+  }
+
+  .surface {
+    @apply bg-white dark:bg-secondary-800;
+  }
+
+  .surface-muted {
+    @apply bg-secondary-50 dark:bg-secondary-900;
+  }
+
+  .icon-surface {
+    @apply bg-primary-50 dark:bg-primary-900/30;
+  }
+
+  .text-muted {
+    @apply text-secondary-600 dark:text-secondary-400;
+  }
+
+  .text-subtle {
+    @apply text-secondary-500 dark:text-secondary-400;
+  }
+
   .card {
-    @apply bg-white rounded-lg shadow-md overflow-hidden dark:bg-secondary-800;
+    @apply surface rounded-lg shadow-md overflow-hidden;
   }
 }
