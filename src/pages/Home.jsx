@@ -215,7 +215,7 @@ function Home() {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center">
+      <section className="relative h-[500px] sm:h-[550px] md:h-[600px] flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1170"
@@ -224,18 +224,18 @@ function Home() {
           />
           <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
-        
-        <div className="relative container text-center text-white space-y-8">
-          <motion.h1 
-            className="text-5xl font-bold"
+
+        <div className="relative container text-center text-white space-y-6 sm:space-y-8">
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl font-bold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             Invest and Trade in Real Estate with Cryptocurrency
           </motion.h1>
-          <motion.p 
-            className="text-xl max-w-2xl mx-auto"
+          <motion.p
+            className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -426,7 +426,7 @@ function Home() {
       </section>
       
       {/* Blog */}
-      <div className="container surface py-24">
+      <div className="container surface py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
