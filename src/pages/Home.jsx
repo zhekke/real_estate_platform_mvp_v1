@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowRight, FiUser, FiClock } from 'react-icons/fi';
 import { FaWallet, FaStore, FaMoneyBillWave, FaExchangeAlt, FaChartLine, FaLock, FaUserCog, FaCoins } from 'react-icons/fa';
 import { SiEthereum } from 'react-icons/si';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { useAccordion } from '../hooks/useAccordion';
 
 function Home() {
-  const [openSections, setOpenSections] = useState({});
+  const { isOpen, toggleItem } = useAccordion();
 
   const featuredProperties = [
     {
@@ -204,13 +204,6 @@ function Home() {
       ]
     }
   ];
-
-  const toggleSection = (sectionTitle, questionIndex) => {
-    setOpenSections(prev => ({
-      ...prev,
-      [`${sectionTitle}-${questionIndex}`]: !prev[`${sectionTitle}-${questionIndex}`]
-    }));
-  };
 
   return (
     <div className="space-y-16">
@@ -499,17 +492,17 @@ function Home() {
                     <div key={questionIndex} className="p-6">
                       <button
                         className="w-full flex justify-between items-center text-left"
-                        onClick={() => toggleSection(section.title, questionIndex)}
+                        onClick={() => toggleItem(`${section.title}-${questionIndex}`)}
                       >
                         <span className="font-medium">{item.question}</span>
-                        {openSections[`${section.title}-${questionIndex}`] ? (
+                        {isOpen(`${section.title}-${questionIndex}`) ? (
                           <FiChevronUp className="flex-shrink-0 ml-4" />
                         ) : (
                           <FiChevronDown className="flex-shrink-0 ml-4" />
                         )}
                       </button>
                       <AnimatePresence>
-                        {openSections[`${section.title}-${questionIndex}`] && (
+                        {isOpen(`${section.title}-${questionIndex}`) && (
                           <motion.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}

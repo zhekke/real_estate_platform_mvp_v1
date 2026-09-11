@@ -4,18 +4,21 @@ import { Leva } from "leva";
 import { Experience } from "../components/property/Experience";
 import { Overlay } from "../components/property/Overlay";
 
-function App() {
+function Property3D() {
   const [loading, setLoading] = useState(true);
-    useEffect(() => {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
   }, []);
+
   return (
     <div className="absolute z-50 inset-0 surface">
-      {loading ? 
-        <div className="absolute z-50 inset-0 w-full h-full flex justify-center items-center text-primary-700 text-xl md:text-3xl text-center font-bold ">Please wait...</div> 
-      : null}
+      {loading && (
+        <div className="absolute z-50 inset-0 w-full h-full flex justify-center items-center text-primary-700 text-xl md:text-3xl text-center font-bold">
+          Please wait...
+        </div>
+      )}
       <Leva hidden />
       <Overlay />
       <Canvas shadows camera={{ position: [0, 0, 5], fov: 30 }}>
@@ -26,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default Property3D;

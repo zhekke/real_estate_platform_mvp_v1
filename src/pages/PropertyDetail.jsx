@@ -133,7 +133,6 @@ function PropertyDetail() {
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="flex items-center space-x-2">
-                  {/* <FiBed className="text-primary-600" /> */}
                   <span>{property.parkingSpaces} Parking</span>
                 </div>
                 <div className="flex items-center space-x-2">
