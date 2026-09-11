@@ -13,13 +13,38 @@
     @apply font-sans text-secondary-800 bg-secondary-50 dark:text-secondary-100 dark:bg-secondary-900;
   }
 
-  /* Smooth theme transition across the whole app, without animating layout/interaction props */
+  /* Smooth theme transition across the whole app, without animating layout/interaction props.
+     This is the fallback path for browsers without the View Transitions API (see ThemeContext). */
   *,
   *::before,
   *::after {
     transition-property: background-color, border-color, color, fill, stroke, box-shadow;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Circular-reveal theme transition (ThemeContext drives this via document.startViewTransition).
+     Disable the browser's default cross-fade so only our clip-path circle animation shows. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 2;
   }
 }
 
