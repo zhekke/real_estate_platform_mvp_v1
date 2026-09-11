@@ -11,7 +11,7 @@ function ThemeToggle({ className = '' }) {
       role="switch"
       aria-checked={isDark}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-      onClick={toggleTheme}
+      onClick={(event) => toggleTheme({ clientX: event.clientX, clientY: event.clientY })}
       className={`relative inline-flex h-8 w-14 shrink-0 items-center rounded-full
         bg-secondary-200 dark:bg-secondary-700
         transition-colors duration-300 ease-in-out

@@ -21,7 +21,37 @@ export function ThemeProvider({ children }) {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  const toggleTheme = ({ clientX, clientY } = {}) => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!document.startViewTransition || prefersReducedMotion) {
+      setTheme(next);
+      return;
+    }
+
+    const x = clientX ?? window.innerWidth / 2;
+    const y = clientY ?? window.innerHeight / 2;
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => setTheme(next));
+
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`],
+        },
+        {
+          duration: 1000,
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
