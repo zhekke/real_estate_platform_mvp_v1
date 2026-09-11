@@ -154,8 +154,8 @@ function Properties() {
       {/* Header */}
       <div className="surface shadow">
         <div className="container py-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold">Investment Properties</h1>
+          <div className="flex flex-wrap gap-4 justify-between items-center">
+            <h1 className="text-2xl sm:text-3xl font-bold">Investment Properties</h1>
             <div className="flex items-center space-x-4">
               <button
                 className={`p-2 rounded-md ${showFilters ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' : 'hover:bg-secondary-100 dark:hover:bg-secondary-700'}`}
